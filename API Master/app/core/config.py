@@ -6,11 +6,6 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "Windows Monitoring System API"
     API_V1_STR: str = "/api/v1"
     
-<<<<<<< HEAD
-   
-    # Database
-=======
->>>>>>> 5f98dee (Update Client URLs and configuration for production)
     POSTGRES_USER: str = os.getenv("POSTGRES_USER", "postgres")
     POSTGRES_PASSWORD: str = os.getenv("POSTGRES_PASSWORD", "1234")
     POSTGRES_SERVER: str = os.getenv("POSTGRES_SERVER", "localhost")
@@ -22,11 +17,6 @@ class Settings(BaseSettings):
     REDIS_HOST: str = os.getenv("REDIS_HOST", "150.241.245.84")
     REDIS_PORT: int = int(os.getenv("REDIS_PORT", "6379"))
     REDIS_DB: int = int(os.getenv("REDIS_DB", "0"))
-<<<<<<< HEAD
-    
-
-=======
->>>>>>> 5f98dee (Update Client URLs and configuration for production)
     
     # Security
     SECRET_KEY: str = "CHANGE_THIS_SECRET_KEY_IN_PRODUCTION" 
