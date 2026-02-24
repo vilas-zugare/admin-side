@@ -1,10 +1,10 @@
 class APIClient {
     constructor() {
-<<<<<<< HEAD
+
         this.baseUrl = "https://employee-monitoring.duckdns.org/api/v1";
         //this.baseUrl = "https://empmonitoring.duckdns.org/api/v1";//
         // this.baseUrl = "https://nonobstetrically-nonoptical-raymundo.ngrok-free.dev/api/v1";
-=======
+
         let envApiUrl = null;
         try {
             if (typeof process !== 'undefined' && process.env && process.env.REACT_APP_API_URL) {
@@ -18,7 +18,7 @@ class APIClient {
         const protocol = window.location.protocol === 'https:' ? 'https:' : 'http:';
 
         this.baseUrl = envApiUrl || window.API_BASE_URL || `${protocol}//${host}/api/v1`;
->>>>>>> 5f98dee (Update Client URLs and configuration for production)
+(Update Client URLs and configuration for production)
 
         this.token = localStorage.getItem('access_token');
         window.api = this;
