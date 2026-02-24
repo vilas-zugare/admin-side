@@ -1,6 +1,6 @@
 class APIClient {
     constructor() {
-        this.baseUrl = "http://localhost:8000/api/v1";
+        this.baseUrl = "https://employee-monitoring.duckdns.org/api/v1";
         //this.baseUrl = "https://empmonitoring.duckdns.org/api/v1";//
         // this.baseUrl = "https://nonobstetrically-nonoptical-raymundo.ngrok-free.dev/api/v1";
 
