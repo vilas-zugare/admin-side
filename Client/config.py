@@ -4,9 +4,8 @@ import platform
 import subprocess
 
 class Config:
-    API_BASE_URL = "http://localhost:8000/api/v1"
-    # API_BASE_URL = "https://empmonitoring.duckdns.org/api/v1"
-    # API_BASE_URL = "https://nonobstetrically-nonoptical-raymundo.ngrok-free.dev/api/v1"
+    API_BASE_URL = os.getenv("SERVER_URL", "https://employee-monitoring.duckdns.org/api/v1")
+    WS_BASE_URL = os.getenv("WS_URL", "wss://employee-monitoring.duckdns.org/api/v1/ws")
     
     # Persistent storage for the token and logs
     APP_DATA_DIR = os.path.join(os.getenv('APPDATA', os.path.expanduser('~')), "EmployeeMonitoring")

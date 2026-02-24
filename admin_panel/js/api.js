@@ -1,8 +1,24 @@
 class APIClient {
     constructor() {
+<<<<<<< HEAD
         this.baseUrl = "https://employee-monitoring.duckdns.org/api/v1";
         //this.baseUrl = "https://empmonitoring.duckdns.org/api/v1";//
         // this.baseUrl = "https://nonobstetrically-nonoptical-raymundo.ngrok-free.dev/api/v1";
+=======
+        let envApiUrl = null;
+        try {
+            if (typeof process !== 'undefined' && process.env && process.env.REACT_APP_API_URL) {
+                envApiUrl = process.env.REACT_APP_API_URL;
+            } else if (typeof import_meta !== 'undefined' && import_meta.env && import_meta.env.VITE_API_URL) {
+                envApiUrl = import_meta.env.VITE_API_URL;
+            }
+        } catch (e) { }
+
+        const host = window.location.host;
+        const protocol = window.location.protocol === 'https:' ? 'https:' : 'http:';
+
+        this.baseUrl = envApiUrl || window.API_BASE_URL || `${protocol}//${host}/api/v1`;
+>>>>>>> 5f98dee (Update Client URLs and configuration for production)
 
         this.token = localStorage.getItem('access_token');
         window.api = this;
@@ -13,14 +29,17 @@ class APIClient {
         if (!this.token) return;
 
         let protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-        let host = 'localhost:8000';
-        if (this.baseUrl.includes('localhost') || this.baseUrl.includes('127.0.0.1')) {
-            protocol = 'ws:';
-        }
+        let host = window.location.host;
+
         try {
             const url = new URL(this.baseUrl);
             host = url.host;
-        } catch (e) { }
+            protocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
+        } catch (e) {
+            console.error("Failed to parse API base URL for WebSocket:", e);
+        }
+
+        protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 
         const wsUrl = `${protocol}//${host}/api/v1/ws/events?token=${this.token}`;
         console.log("Connecting to Admin Events:", wsUrl);

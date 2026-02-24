@@ -78,27 +78,19 @@ class LiveStreamManager {
         if (this.titleEl) this.titleEl.textContent = 'Connecting to Live Stream...';
 
         let protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-        let host = 'localhost:8000';
+        let host = window.location.host;
 
-        // Check if we are on localhost and force ws:
-        if (host.includes('localhost') || host.includes('127.0.0.1')) {
-            protocol = 'ws:';
-        }
-
-        // Try to get host from the main API client if it exists
         if (window.api && window.api.baseUrl) {
             try {
                 const url = new URL(window.api.baseUrl);
                 host = url.host;
-                // Update protocol based on baseUrl
                 protocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
             } catch (e) {
                 console.error("Failed to parse API base URL for stream:", e);
             }
-        } else if (window.location.protocol !== 'file:') {
-            host = window.location.host;
-            protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
         }
+
+        protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 
         // THE PURPOSE: Connect to the new WebRTC signaling endpoint to exchange connection details with the desktop agent.
         // THE REPLACEMENT: Replaced the old WebSocket connection to `/admin/{userId}` that used to receive continuous base64 images from the server.
