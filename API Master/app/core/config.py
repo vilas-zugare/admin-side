@@ -5,18 +5,20 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "Windows Monitoring System API"
     API_V1_STR: str = "/api/v1"
     
+   
     # Database
     POSTGRES_USER: str = "postgres"
-    POSTGRES_PASSWORD: str = "pranita12"
+    POSTGRES_PASSWORD: str = "1234"
     POSTGRES_SERVER: str = "localhost"
     POSTGRES_PORT: str = "5432"
-    POSTGRES_DB: str = "employee_monitoring"
+    POSTGRES_DB: str = "montior_db"
     DATABASE_URL: Optional[str] = None
 
     # Redis
-    REDIS_HOST: str = "127.0.0.1"
+    REDIS_HOST: str = "150.241.245.84"
     REDIS_PORT: int = 6379
     REDIS_DB: int = 0
+
     
     # Security
     SECRET_KEY: str = "CHANGE_THIS_SECRET_KEY_IN_PRODUCTION" 
