@@ -1,0 +1,36 @@
+from pydantic_settings import BaseSettings
+from typing import Optional
+
+class Settings(BaseSettings):
+    PROJECT_NAME: str = "Windows Monitoring System API"
+    API_V1_STR: str = "/api/v1"
+    
+    # Database
+    POSTGRES_USER: str = "postgres"
+    POSTGRES_PASSWORD: str = "pranita12"
+    POSTGRES_SERVER: str = "localhost"
+    POSTGRES_PORT: str = "5432"
+    POSTGRES_DB: str = "employee_monitoring"
+    DATABASE_URL: Optional[str] = None
+
+    # Redis
+    REDIS_HOST: str = "127.0.0.1"
+    REDIS_PORT: int = 6379
+    REDIS_DB: int = 0
+    
+    # Security
+    SECRET_KEY: str = "CHANGE_THIS_SECRET_KEY_IN_PRODUCTION" 
+    ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 52560000  # 100 years
+    REFRESH_TOKEN_EXPIRE_DAYS: int = 36500  # 100 years
+
+    def resolve_database_url(self):
+        if self.DATABASE_URL:
+            return self.DATABASE_URL
+        return f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_SERVER}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
+
+    class Config:
+        env_file = ".env"
+
+settings = Settings()
+settings.DATABASE_URL = settings.resolve_database_url()

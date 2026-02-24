@@ -1,0 +1,35 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Env & secrets
+.env
+*.key
+client/client_token.key
+
+# Project specific
+client/reproduce_client_login.py
+API master/static/screenshots/*.png
+API master/test_db_connection.py
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+venv/
+server_error.log
+.admin_token
+
+# Data
+API master/static/
+static/
+API master.zip
+check_redis.py
+check_routes.py
+API master/backend.log
+emp_monitor_system_doc.pdf
+# client/EmployeeMonitoring.spec
+# client/build/
+# client/dist/
+# client/icon.ico

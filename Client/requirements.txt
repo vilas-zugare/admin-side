@@ -1,0 +1,15 @@
+requests
+pillow
+psutil
+wmi
+pyautogui
+pywin32
+tk
+uiautomation
+websocket-client
+mss
+pyinstaller
+winshell
+aiortc
+websockets
+opencv-python
