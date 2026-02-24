@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  web:
+    build: 
+      context: ./API Master
+      dockerfile: Dockerfile
+    container_name: webrtc_fastapi_web
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-pranita12}
+      - POSTGRES_SERVER=${POSTGRES_SERVER:-postgres}
+      - POSTGRES_PORT=${POSTGRES_PORT:-5432}
+      - POSTGRES_DB=${POSTGRES_DB:-employee_monitoring}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-*}
+      - SECRET_KEY=${SECRET_KEY:-CHANGE_THIS_SECRET_KEY_IN_PRODUCTION}
+    depends_on:
+      - redis
+    networks:
+      - webrtc_net
+
+  redis:
+    image: redis:alpine
+    container_name: webrtc_redis
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - webrtc_net
+
+volumes:
+  redis_data:
+
+networks:
+  webrtc_net:
+    driver: bridge
